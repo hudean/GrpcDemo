@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcGreeter";
+
+package example;
+
+service exampler {
+  // Unarys
+  rpc UnaryCall (ExampleRequest) returns (ExampleResponse);
+
+  // Server streaming
+  rpc StreamingFromServer (ExampleRequest) returns (stream ExampleResponse);
+
+  // Client streaming
+  rpc StreamingFromClient (stream ExampleRequest) returns (ExampleResponse);
+
+  // Bi-directional streaming
+  rpc StreamingBothWays (stream ExampleRequest) returns (stream ExampleResponse);
+}
+message ExampleRequest {
+    int32 id = 1;
+    string name = 2;
+}
+
+message ExampleResponse {
+    string msg = 1;
+}
